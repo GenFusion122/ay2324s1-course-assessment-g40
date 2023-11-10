@@ -4,21 +4,13 @@ const Role = db.role;
 
 var bcrypt = require('bcryptjs');
 
-exports.allAccess = (req, res) => {
-    res.status(200).send("Public Content.");
-  };
-  
 exports.userBoard = (req, res) => {
 console.log(req.session.username);
 res.status(200).send("User Content.");
 };
-  
-exports.adminBoard = (req, res) => {
-res.status(200).send("Admin Content.");
-};
 
 exports.updateUser = (req, res) => {
-  User.findOneAndUpdate({ _id: req.userId  }, 
+  User.findOneAndUpdate({ _id: req.session.id }, 
       { password: bcrypt.hashSync(req.body.newPassword, 8) },
       { new: true })
       .then(updatedUser => {
@@ -31,7 +23,7 @@ exports.updateUser = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-  User.findOneAndDelete({ _id: req.userId })
+  User.findOneAndDelete({ _id: req.session.id })
       .then(deletedUser => {
           if (!deletedUser) {
               return res.status(404).send({ message: "User Not found." });

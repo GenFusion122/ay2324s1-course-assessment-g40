@@ -55,15 +55,8 @@ exports.signin = (req, res) => {
                 });
             }
             var authorities = [];
-            let isAdmin = false;
-            for (let i = 0; i < user.roles.length; i++) {
-                if (user.roles[i].name.toUpperCase() === "ADMIN") {
-                    isAdmin = true;
-                }
-                authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-            }
 
-            const token = jwt.sign({ id: user.id, isAdmin: isAdmin }, config.secret, {
+            const token = jwt.sign({ id: user.id }, config.secret, {
                 algorithm: "HS256",
                 allowInsecureKeySizes: true,
                 expiresIn: 86400 // 24 hours
@@ -72,6 +65,7 @@ exports.signin = (req, res) => {
         req.session.token = token;
         req.session.username = user.username;
         req.session.authorities = authorities;
+        req.session.id = user._id;
         res.status(200).send({
             token: token,
             id: user._id,

@@ -38,15 +38,15 @@ selector: any;
   }
 
   view(i: number) {
-      this.currentIndex = i;
+      this.currentIndex = i - 1;
   }
 
   toggleView(i: any) {
     // to improve
     this.bottomView = !this.bottomView;
     if (i) {
-      this.currentIndex = i;
-      this.currentQuestion = this.questions[i]
+      this.currentIndex = i - 1;
+      this.currentQuestion = this.questions[i - 1]
     } else {
       this.currentIndex = -1;
     }
@@ -54,24 +54,51 @@ selector: any;
   }
 
   addItem(formData: any) {
-      let obj = Object.assign({}, formData.value);
-      obj["questionId"] = this.counter;
+    let obj = Object.assign({}, formData.value);
+    let dup = false
+    // this is not right below
+    this.questions.forEach((q) => {
+      if (q["questionTitle"] == obj["questionTitle"]) {
+        alert("Duplicate Question! Please try again")
+        dup = true
+        return
+      }
+    })
+    if (!dup) {
       this.questionService.saveQuestion(obj).subscribe((res) => {
-        // log error
+        obj["questionId"] = res.questionId;
+        this.counter++;
+        this.questions?.push(obj)
+        this.saveQuestions();
+        formData.reset()
+      }, (err) => {
+        var errMessage = "An error occurred while adding your question!"
+        if (err.error) {
+          if (err.error.message.includes("duplicate key error")) {
+            errMessage = errMessage + " Error: " + err.error.message
+          }
+        }
+        alert(errMessage);
       })
-      this.counter++;
-      this.questions?.push(obj)
-      this.saveQuestions();
-      
+    }
   }
 
   editItem(index: number, qid: number, formData: any) {
     let obj = Object.assign({}, formData.value);
     obj["questionId"] = qid;
     console.log(obj)
-    this.questions[index] = obj;
     this.questionService.editQuestion(obj).subscribe((res) => {
-      // log error
+      this.questions[index] = obj;
+      alert("Edited question successfully.");
+      document.getElementById('close')?.click();
+    }, (err) => {
+      var errMessage = "An error occurred while editing question " + qid + "!"
+      if (err.error) {
+        if (err.error.message.includes("duplicate key error")) {
+          errMessage = errMessage + " Error: " + "You inputted a duplicate question title"
+        }
+      }
+      alert(errMessage);
     })
   }
 

@@ -10,15 +10,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent, ProfileComponent, DeleteAccountComponent } from './profile/profile.component';
-import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
-import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { MainComponent } from './main/main.component';
-import { MatchingComponent } from './matching/matching.component';
-import { CollabComponent } from './collab/collab.component';
-import { ChatComponent } from './collab/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +22,8 @@ import { ChatComponent } from './collab/chat/chat.component';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    AdminComponent,
     UserComponent,
     MainComponent,
-    MatchingComponent,
-    CollabComponent,
-    ChatComponent,
     ChangePasswordComponent,
     DeleteAccountComponent
   ],
@@ -42,7 +33,6 @@ import { ChatComponent } from './collab/chat/chat.component';
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    MonacoEditorModule.forRoot()
   ],
   providers: [
     httpInterceptorProviders ],
