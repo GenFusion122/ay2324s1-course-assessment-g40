@@ -23,10 +23,6 @@ module.exports = mongoose => {
         type: String,
         required: true
       },
-      questionTags: {
-        type: Array,
-        required: false
-      }
     },
     { timestamps: true }
   )
@@ -36,7 +32,6 @@ module.exports = mongoose => {
     questionDescription: "text",
     questionComplexity: "text",
     questionCategory: "text",
-    questionTags: "text"
 })
   const Question = mongoose.model(
     "question",

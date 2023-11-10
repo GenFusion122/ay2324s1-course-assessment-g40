@@ -15,7 +15,6 @@
             <th>Question Title</th>
             <th>Question Category</th>
             <th>Question Complexity</th>
-            <th>Tags</th>
           </tr>
         </thead>
         <tbody style="display: block; max-height: 90vh; overflow-y: scroll;">
@@ -28,9 +27,6 @@
             <td>{{question.questionTitle}}</td>
             <td>{{question.questionCategory}}</td>
             <td>{{question.questionComplexity}}</td>
-            <td>
-              <button class="btn btn-secondary m-2" *ngFor="let tag of question.questionTags">{{tag}}</button>
-            </td>
             <div class="modal" [id]="'exampleModal' + question.questionId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -40,7 +36,6 @@
                   </div>
                   <div class="modal-body">
                           <h2>{{question.questionTitle}}</h2>
-                          <button class="btn btn-secondary m-1" *ngFor="let tag of question.questionTags">{{tag}}</button>
                           <p>Category: {{question.questionCategory}}</p>
                           <p>Complexity: {{question.questionComplexity}}</p>
                           <p>{{question.questionDescription}}</p>

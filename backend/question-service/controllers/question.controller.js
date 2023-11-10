@@ -16,7 +16,6 @@ exports.create = (req, res) => {
       questionDescription: req.body.questionDescription,
       questionCategory: req.body.questionCategory,
       questionComplexity: req.body.questionComplexity,
-      questionTags: req.body.questionTags
     });
   
     question

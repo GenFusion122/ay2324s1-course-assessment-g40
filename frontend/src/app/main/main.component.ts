@@ -15,10 +15,8 @@ export class MainComponent {
   counter!: number;
   bottomView = true;
   selector: any;
-  tags = new FormControl('')
   categories = new FormControl('')
   categoriesList: string[] = ["Algorithms", "Brain Teasers", "Hashing", "Dynamic Programming"]
-  tagsList: string[] = ['Popular', 'NeetCode 150', 'Top 50', 'Top 10']
 
   constructor(private questionService: QuestionService) {}
   
@@ -84,21 +82,18 @@ export class MainComponent {
     let obj = Object.assign({}, formData.value);
     obj["questionId"] = qid;
     console.log(obj)
-    this.questions[index] = obj;
     this.questionService.editQuestion(obj).subscribe((res) => {
-      // log error
+      this.questions[index] = obj;
+      document.getElementById('close')?.click();
+      alert("Edited question successfully.");
+    }, (err) => {
+      alert("Duplicate Question title! Please try again")
     })
   }
 
   deleteItem(index: number, i: number) {
-    this.questions.splice(index, 1);
     this.questionService.deleteQuestion(i).subscribe((res) => {
-      // log error
+      this.questions.splice(index, 1);
     })
   }
-
-  addTag(s: string) {
-    this.tagsList.push(s);
-  }
-  
 }
