@@ -1,2 +1,14 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/6BOvYMwN)
-# AssignmentTemplate
+# Assignment-2
+## Instructions
+To run the project
+- Ensure a Docker daemon is running
+- `cd` to the root of the project
+- In a terminal run:
+  * `docker-compose up`, or,
+  * `docker-compose up -d` to run in detached mode
+
+Access the application in a web browser at the URL `127.0.0.1:8080`.
+
+To tear down the project
+- In a terminal, run:
+  * `docker-compose down`
