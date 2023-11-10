@@ -16,11 +16,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { MainComponent } from './main/main.component';
-import { MatchingComponent } from './matching/matching.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RoleGuard } from './_guards/role.guard';
-import { CollabComponent } from './collab/collab.component';
-import { ChatComponent } from './collab/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +29,6 @@ import { ChatComponent } from './collab/chat/chat.component';
     AdminComponent,
     UserComponent,
     MainComponent,
-    MatchingComponent,
-    CollabComponent,
-    ChatComponent,
     ChangePasswordComponent,
     DeleteAccountComponent
   ],
