@@ -25,7 +25,7 @@ export class CollabComponent implements OnInit, AfterViewInit {
   public attempts: any;
 
   private editor: any;
-  public editorOptions = { theme: 'vs-dark', language: '' };
+  public editorOptions = { theme: 'vs-dark', language: '' , automaticLayout: true};
 
   searchResults: any;
   questionView: boolean = true;
@@ -210,4 +210,39 @@ export class CollabComponent implements OnInit, AfterViewInit {
       console.log("An error occurred while saving attempt: " + err.message)
     })
   }
+
+
+  viewAttempt(attempt: any) {
+    this.editor.getModel().setValue(attempt.solution);
+  }
+
+  isPanelOneOpen: boolean = true;
+  isPanelTwoOpen: boolean = false;
+  isPanelThreeOpen: boolean = false;
+
+  handleAccordionPanelOneClick(): void {
+    this.isPanelOneOpen = true;
+    this.isPanelTwoOpen = false;
+    this.isPanelThreeOpen = false;
+    console.log("Panel one open:" + this.isPanelOneOpen);
+    console.log("Panel two open:" + this.isPanelTwoOpen);
+    console.log("Panel three open:" + this.isPanelThreeOpen);
+  }
+  handleAccordionPanelTwoClick(): void {
+    this.isPanelOneOpen = false;
+    this.isPanelTwoOpen = true;
+    this.isPanelThreeOpen = false;
+    console.log("Panel one open:" + this.isPanelOneOpen);
+    console.log("Panel two open:" + this.isPanelTwoOpen);
+    console.log("Panel three open:" + this.isPanelThreeOpen);
+  }
+  handleAccordionPanelThreeClick(): void {
+    this.isPanelOneOpen = false;
+    this.isPanelTwoOpen = false;
+    this.isPanelThreeOpen = true;
+    console.log("Panel one open:" + this.isPanelOneOpen);
+    console.log("Panel two open:" + this.isPanelTwoOpen);
+    console.log("Panel three open:" + this.isPanelThreeOpen);
+  }
+
 }
